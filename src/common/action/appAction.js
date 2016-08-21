@@ -10,7 +10,7 @@ export const setLDReady = ldClient => {
 
 export const initialiseLD = () => {
   return dispatch => {
-    const user = {'key': 'yusinto@mgmail.com'};
+    const user = {'key': Math.random()};
     const client = ldClient.initialize('57a55163b14b9907200fa40e', user);
 
     client.on('ready', () => {
