@@ -5,6 +5,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
 
+    this.eventSource = {};
     this.onClickGenerateRandom = ::this.onClickGenerateRandom;
   }
 
@@ -16,6 +17,19 @@ export default class Home extends Component {
     if(newProps.isLDReady && !this.props.isLDReady) {
       this.props.initialiseHomeFlags();
     }
+  }
+
+  componentDidMount() {
+    this.eventSource = new EventSource("/events");
+    this.eventSource.onmessage = (event) => {
+      console.log(`noevent: ${event.data}`);
+    };
+
+    this.eventSource.addEventListener('ping', e => console.log(`pingHandler ${e.data}`));
+  }
+
+  componentWillUnmount() {
+    this.eventSource.close();
   }
 
   render() {
