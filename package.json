@@ -26,7 +26,7 @@
   "homepage": "https://github.com/yusinto/reactStep5#readme",
   "dependencies": {
     "babel-preset-es2015": "^6.6.0",
-    "babel-preset-react": "^6.5.0",
+    "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
     "express": "^4.13.4",
