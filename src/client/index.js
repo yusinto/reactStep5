@@ -6,6 +6,11 @@ import {Router, browserHistory} from 'react-router';
 import routes from '../common/route';
 import {Provider} from 'react-redux';
 import createStore from '../common/store';
+import ldReduxInit from '../ld-redux';
+
+const store = createStore();
+
+ldReduxInit('57a55163b14b9907200fa40e', store.dispatch);
 
 /**
  * Instead of rendering your root component directly, you render the Router component with routes attribute
@@ -15,7 +20,7 @@ import createStore from '../common/store';
  * to "/#/contact"
  */
 render(
-  <Provider store={createStore()}>
+  <Provider store={store}>
     <Router routes={routes} history={browserHistory}/>
   </Provider>,
   document.getElementById('reactDiv')

@@ -1,17 +1,8 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import * as AppActions from '../action/appAction';
 import AppComponent from '../component/appComponent';
+import ldConnect from '../../ld-redux/decorator';
 
-const mapStateToProps = (state) => {
-  const appState = state.App;
-
-  return {
-    isLDReady: appState.isLDReady
-  };
-};
-
-@connect(mapStateToProps, AppActions)
+@ldConnect()
 export default class AppContainer extends Component {
   render() {
     return <AppComponent {...this.props} />;

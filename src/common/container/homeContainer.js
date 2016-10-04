@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import * as Actions from '../action/homeAction';
 import HomeComponent from '../component/homeComponent';
+import ldConnect from '../../ld-redux/decorator';
+import * as actions from '../action/homeAction';
 
 const mapStateToProps = (state) => {
   const homeState = state.Home;
-
   return {
-    randomNumber: homeState.randomNumber
+    someRandomNumber: homeState.someRandomNumber,
   };
 };
 
-@connect(mapStateToProps, Actions)
-export default class AppContainer extends Component {
+@ldConnect(mapStateToProps, actions, {'random-number': false})
+export default class HomeContainer extends Component {
   render() {
     return <HomeComponent {...this.props} />;
   }
-}
+};
