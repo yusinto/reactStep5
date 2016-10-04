@@ -13,23 +13,24 @@ export default class Home extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.isLDReady && !this.props.isLDReady) {
+    if (newProps.isLDReady && !this.props.isLDReady) {
       this.props.initialiseHomeFlags();
     }
   }
 
   render() {
-    let homeText = 'Click button below to generate a random number!';
-
-    if(this.props['wellness-red-font']) {
-      homeText = <div style={{color: 'red'}}>{homeText}</div>;
-    }
-
     return (
       <div>
-        { homeText }
-        <div>{this.props.randomNumber}</div>
-        <button onClick={this.onClickGenerateRandom}>Generate random number</button>
+        {
+          this.props['random-number'] ?
+            <div>
+              <div>Click button below to generate a random number!</div>
+              <div>{this.props.randomNumber}</div>
+              <button onClick={this.onClickGenerateRandom}>Generate random number</button>
+            </div>
+            :
+            null
+        }
       </div>
     );
   }

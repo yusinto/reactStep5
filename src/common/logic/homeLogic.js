@@ -1,6 +1,5 @@
 export const homeFlags = {
-  'wellness-red-font': false,
-  'wellness-aggressive-content': false
+  'random-number': false
 };
 
 export const getRandomInt = (min, max) => {
