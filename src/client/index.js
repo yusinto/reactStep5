@@ -6,11 +6,11 @@ import {Router, browserHistory} from 'react-router';
 import routes from '../common/route';
 import {Provider} from 'react-redux';
 import createStore from '../common/store';
-import ldReduxInit from '../ld-redux';
+import {initLD} from '../ld-redux';
 
 const store = createStore();
 
-ldReduxInit('57d3a57f53f8630721228f2d', store);
+initLD('57d3a57f53f8630721228f2d', store);
 
 /**
  * Instead of rendering your root component directly, you render the Router component with routes attribute

@@ -1,30 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux'
 import HomeComponent from '../component/homeComponent';
 import * as homeActions from '../action/homeAction';
+import * as appActions from '../action/appAction';
 
-import ldConnect from '../../ld-redux/decorator';
-import * as ldActions from '../../ld-redux/actions';
-import {getFlagState} from '../../ld-redux/reducer';
+import {getFlagsFromState, mapActionsToProps, ldConnect} from '../../ld-redux';
 
-const flags = {'random-number': false};
+// These must be the keys you set up in launch darkly dashboard (kebab-lower-cased)
+const defaultFlags = {'random-number': false};
 
 const mapStateToProps = (state) => {
   const homeState = state.Home;
-  const ldState = getFlagState(state, flags);
+
+  // Use helper method to subscribe to your flags as camelCased props
+  const flags = getFlagsFromState(state, defaultFlags);
+
   return {
     someRandomNumber: homeState.someRandomNumber,
-    ...ldState,
+    something: homeState.something,
+    ...flags,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(Object.assign({}, homeActions, ldActions), dispatch);
-};
-
-@connect(mapStateToProps, mapDispatchToProps)
-@ldConnect(flags)
+// Use helper method to create mapDispatchToProps, passing your actions to the helper method
+@connect(mapStateToProps, mapActionsToProps(homeActions, appActions))
+@ldConnect(defaultFlags) // connect the component to the feature flags it needs
 export default class HomeContainer extends Component {
   render() {
     return <HomeComponent {...this.props} />;

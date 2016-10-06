@@ -5,10 +5,15 @@ export default class Home extends Component {
     super(props);
 
     this.onClickGenerateRandom = ::this.onClickGenerateRandom;
+    this.onClickSaySomething = ::this.onClickSaySomething;
   }
 
   onClickGenerateRandom() {
     this.props.generateRandom();
+  }
+
+  onClickSaySomething() {
+    this.props.saySomething('hello world');
   }
 
   render() {
@@ -22,6 +27,8 @@ export default class Home extends Component {
               <p>{ homeText }</p>
               <div>{this.props.someRandomNumber}</div>
               <button onClick={this.onClickGenerateRandom}>Generate random number</button>
+              <button onClick={this.onClickSaySomething}>Say something!</button>
+              <div>{this.props.something}</div>
             </div>
             :
             'nothing!'
