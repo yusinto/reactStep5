@@ -10,7 +10,7 @@ import ldReduxInit from '../ld-redux';
 
 const store = createStore();
 
-ldReduxInit('57a55163b14b9907200fa40e', store.dispatch);
+ldReduxInit('57d3a57f53f8630721228f2d', store);
 
 /**
  * Instead of rendering your root component directly, you render the Router component with routes attribute

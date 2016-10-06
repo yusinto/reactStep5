@@ -8,7 +8,7 @@ const userAgentParser = new UAParser();
 const isMobileDevice = typeof window !== 'undefined' && userAgentParser.getDevice().type === 'mobile';
 const isTabletDevice = typeof window !== 'undefined' && userAgentParser.getDevice().type === 'tablet';
 
-const init = (clientSideId, dispatch, user) => {
+const init = (clientSideId, reduxStore, user) => {
   if (!user) {
     let device;
 
@@ -33,7 +33,7 @@ const init = (clientSideId, dispatch, user) => {
   window.ldClient = ldClient.initialize(clientSideId, user);
   window.ldClient.on('ready', () => {
     console.log(`ldclient ready. user: ${JSON.stringify(user)}`);
-    dispatch(setLDReady());
+    reduxStore.dispatch(setLDReady());
   });
 };
 

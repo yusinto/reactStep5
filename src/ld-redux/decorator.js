@@ -1,36 +1,6 @@
 import React, {PropTypes, Component} from 'react';
-import camelCase from 'lodash/camelCase';
-import {connect} from 'react-redux';
-import * as actionCreators from './actions';
 
-
-export default (m, a, flags) => (WrappedComponent) => {
-  const mapStateToProps = state => {
-    const o = m ? m(state) : {};
-    const ldState = state.LD;
-
-    if (flags) {
-      const c = {};
-
-      for (const key in flags) {
-        const camelCaseKey = camelCase(key);
-        c[camelCaseKey] = ldState[camelCaseKey];
-      }
-
-      return {
-        isLDReady: ldState.isLDReady,
-        ...c,
-        ...o,
-      };
-    }
-
-    return {
-      isLDReady: ldState.isLDReady,
-      ...o,
-    };
-  };
-
-  @connect(mapStateToProps, {...a, ...actionCreators})
+export default (flags) => (WrappedComponent) => {
   class WithFeatureFlags extends Component {
     static propTypes = {
       isLDReady: PropTypes.bool,
