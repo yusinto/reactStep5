@@ -5,7 +5,7 @@ import {render} from 'react-dom';
 import {Router, browserHistory} from 'react-router';
 import routes from '../common/route';
 import {Provider} from 'react-redux';
-import createStore from '../common/store';
+import createStore from '../common/redux/store';
 
 /**
  * Instead of rendering your root component directly, you render the Router component with routes attribute

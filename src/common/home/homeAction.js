@@ -1,5 +1,5 @@
 import Constants from '../constant';
-import {getRandomInt} from '../logic/homeLogic';
+import {getRandomInt} from './homeLogic';
 
 export const generateRandom = () => {
   return {
