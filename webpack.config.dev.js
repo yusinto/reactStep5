@@ -15,11 +15,17 @@ module.exports = {
     publicPath: '/dist/'
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loader: 'babel',
-      include: path.join(__dirname, 'src')
-    }]
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loader: 'babel',
+        include: path.join(__dirname, 'src')
+      },
+      {
+        test: /\.json/,
+        loader: 'json',
+      }
+    ]
   },
 
   // Enables hot module replacement in webpack
